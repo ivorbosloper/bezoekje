@@ -52,4 +52,19 @@ npm run typecheck    # tsc --noEmit
 ## Deploy
 
 Deploy to Vercel. Set `DATABASE_URL` / `DATABASE_AUTH_TOKEN` to a Turso database.
+
+Or self-host with Docker: `scripts/deploy.sh` copies the committed `HEAD` to a
+server over ssh, builds the image there and (re)starts the container on
+`127.0.0.1:20090`, with the SQLite file on a host directory
+(`/opt/bezoekje/data`, bind-mounted so `docker prune` cannot remove it).
+
+```bash
+DEPLOY_HOST=user@server scripts/deploy.sh
+```
+
+One-time server setup: create `/opt/bezoekje/data` owned by uid 1000, and
+`~/bezoekje/.env` with `DATABASE_URL=file:/data/bezoekje.db`,
+`BETTER_AUTH_URL`, `BETTER_AUTH_SECRET` and `RESEND_API_KEY`. Put nginx (or
+another TLS proxy) in front of the port.
+
 The app sends a `noindex` robots directive so it never appears in search results.
