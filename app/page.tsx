@@ -1,6 +1,7 @@
 import { createRosterAction } from "@/app/actions";
 import { GithubIcon } from "@/components/github-icon";
 import { Reveal } from "@/components/landing/reveal";
+import { siteHost, SOURCE_URL } from "@/lib/site";
 
 const flowSteps = [
   {
@@ -12,7 +13,7 @@ const flowSteps = [
     iconClass: "bg-white text-[#2277B0]",
     cardClass: "border-[#C9E4F6] bg-[#E7F4FC] -rotate-1",
     copy: "Zet de bezoekerslink in de groepsapp. Iedereen kan meekijken en een moment kiezen.",
-    url: "bezoekje.app/r/x7Kq9mP2",
+    path: "/r/x7Kq9mP2",
   },
   {
     icon: PencilIcon,
@@ -23,7 +24,7 @@ const flowSteps = [
     iconClass: "bg-white text-[#3B8547]",
     cardClass: "border-[#CBE5C9] bg-[#EAF6E8] rotate-1 md:translate-y-3",
     copy: "Wie langskomt krijgt een eigen link om het bezoekje te verzetten of te annuleren.",
-    url: "bezoekje.app/r/…/v/38/aJ3n",
+    path: "/r/…/v/38/aJ3n",
   },
   {
     icon: KeyIcon,
@@ -34,7 +35,7 @@ const flowSteps = [
     iconClass: "bg-white text-[#A87400]",
     cardClass: "border-[#F0DFA8] bg-[#FCF3D4] -rotate-1",
     copy: "Met de beheerlink pin je een notitie, zet je rustmomenten vast en pas je elk bezoek aan.",
-    url: "bezoekje.app/r/…/admin/rW8s",
+    path: "/r/…/admin/rW8s",
   },
 ];
 
@@ -277,7 +278,7 @@ function DetailsSection() {
               <div className="rounded-md border border-[#EFE6DA] bg-white p-3.5">
                 <p className="text-sm font-medium text-[#221D18]">Bezoekrooster</p>
                 <p className="mt-1.5 break-all font-mono text-xs text-[#2277B0]">
-                  bezoekje.app/r/x7Kq9mP2
+                  {siteHost()}/r/x7Kq9mP2
                 </p>
               </div>
             </div>
@@ -403,7 +404,7 @@ function FinalCtaSection() {
             Voorbeeld
           </a>
           <a
-            href="https://github.com/MajesteitBart/bezoekje"
+            href={SOURCE_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 transition-colors hover:text-[#E4593B]"
@@ -470,7 +471,7 @@ function RosterMock() {
           <span className="size-2.5 rounded-full bg-[#F4DC9F]" />
           <span className="size-2.5 rounded-full bg-[#BCDFBB]" />
         </div>
-        <p className="font-mono text-xs text-[#8A8177]">bezoekje.app/r/x7Kq9mP2</p>
+        <p className="font-mono text-xs text-[#8A8177]">{siteHost()}/r/x7Kq9mP2</p>
         <span />
       </div>
 
@@ -599,7 +600,7 @@ function DayZoomMock() {
           <span className="size-2.5 rounded-full bg-[#F4DC9F]" />
           <span className="size-2.5 rounded-full bg-[#BCDFBB]" />
         </div>
-        <p className="font-mono text-xs text-[#8A8177]">bezoekje.app/r/x7Kq9mP2</p>
+        <p className="font-mono text-xs text-[#8A8177]">{siteHost()}/r/x7Kq9mP2</p>
         <span />
       </div>
 
@@ -767,7 +768,7 @@ function FlowCard({ step }: { step: (typeof flowSteps)[number] }) {
       </h3>
       <p className="mt-3 flex-1 text-sm leading-[1.6] text-[#5C554C]">{step.copy}</p>
       <div className="mt-6 rounded-md bg-white/80 px-3 py-2.5">
-        <p className="truncate font-mono text-xs text-[#8A8177]">{step.url}</p>
+        <p className="truncate font-mono text-xs text-[#8A8177]">{siteHost()}{step.path}</p>
       </div>
     </article>
   );
@@ -845,7 +846,7 @@ function ChatScreen() {
       <div className="ml-6 rounded-lg rounded-br-sm bg-[#E4F2E2] p-3 text-[13px] leading-[1.5] text-[#4A443D]">
         Bezoekrooster
         <br />
-        <span className="font-mono text-xs text-[#3B8547]">bezoekje.app/r/x7Kq9mP2</span>
+        <span className="font-mono text-xs text-[#3B8547]">{siteHost()}/r/x7Kq9mP2</span>
       </div>
     </div>
   );

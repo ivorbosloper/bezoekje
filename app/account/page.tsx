@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { auth } from "@/lib/auth";
 import { getRostersForUser } from "@/lib/data";
 import { dbReady } from "@/lib/db";
+import { siteUrl } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
@@ -78,7 +79,7 @@ export default async function AccountPage() {
           <PlusIcon data-icon="inline-start" />
           Nieuw rooster maken
         </Button>
-        <AddRosterForm />
+        <AddRosterForm siteUrl={siteUrl()} />
       </div>
 
       <form action={signOutAction}>

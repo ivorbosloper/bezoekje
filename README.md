@@ -63,8 +63,10 @@ DEPLOY_HOST=user@server scripts/deploy.sh
 ```
 
 One-time server setup: create `/opt/bezoekje/data` owned by uid 1000, and
-`~/bezoekje/.env` with `DATABASE_URL=file:/data/bezoekje.db`,
+`~/bezoekje/.env` with `DATABASE_URL=file:/data/bezoekje.db`, `SITE_URL`,
 `BETTER_AUTH_URL`, `BETTER_AUTH_SECRET` and `RESEND_API_KEY`. Put nginx (or
-another TLS proxy) in front of the port.
+another TLS proxy) in front of the port. A `SITE_URL` other than
+`https://bezoekje.app` shows example links with that host and replaces the
+GitHub icon in the header with a notice that this is a self-hosted clone.
 
 The app sends a `noindex` robots directive so it never appears in search results.

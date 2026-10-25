@@ -4,6 +4,7 @@ import { Fraunces, Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import { NavBar } from "@/components/nav-bar"
 import { ThemeProvider } from "@/components/theme-provider"
+import { siteUrl } from "@/lib/site"
 import { cn } from "@/lib/utils";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'})
@@ -19,20 +20,22 @@ const fontSerif = Fraunces({
   axes: ["SOFT", "WONK", "opsz"],
 })
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://bezoekje.app"),
-  title: "Bezoekje — plan even snel een bezoekje",
-  description: "Eén link in de groepsapp. Kies een vrij moment, zet je naam erbij, klaar.",
-  robots: { index: false, follow: false },
-  openGraph: {
+export function generateMetadata(): Metadata {
+  return {
+    metadataBase: new URL(siteUrl()),
     title: "Bezoekje — plan even snel een bezoekje",
-    description:
-      "Maak een bezoekrooster en deel één link in je WhatsApp-groep. Iedereen ziet direct wie er wanneer komt.",
-    url: "https://bezoekje.app",
-    siteName: "Bezoekje",
-    locale: "nl_NL",
-    type: "website",
-  },
+    description: "Eén link in de groepsapp. Kies een vrij moment, zet je naam erbij, klaar.",
+    robots: { index: false, follow: false },
+    openGraph: {
+      title: "Bezoekje — plan even snel een bezoekje",
+      description:
+        "Maak een bezoekrooster en deel één link in je WhatsApp-groep. Iedereen ziet direct wie er wanneer komt.",
+      url: siteUrl(),
+      siteName: "Bezoekje",
+      locale: "nl_NL",
+      type: "website",
+    },
+  }
 }
 
 export const viewport: Viewport = {

@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label";
 
 const initial: AddRosterState = { ok: false };
 
-export function AddRosterForm() {
+export function AddRosterForm({ siteUrl }: { siteUrl: string }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [state, action, pending] = useActionState(addRosterByLinkAction, initial);
@@ -45,7 +45,7 @@ export function AddRosterForm() {
         id="add-link"
         name="link"
         required
-        placeholder="https://bezoekje.app/r/…/admin/…"
+        placeholder={`${siteUrl}/r/…/admin/…`}
       />
       {state.ok && state.added ? (
         <p className="text-sm font-medium">

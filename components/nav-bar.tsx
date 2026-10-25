@@ -1,10 +1,12 @@
 import { headers } from "next/headers";
 import Link from "next/link";
 
+import { CloneNotice } from "@/components/clone-notice";
 import { GithubIcon } from "@/components/github-icon";
 import { Logo } from "@/components/logo";
 import { auth } from "@/lib/auth";
 import { dbReady } from "@/lib/db";
+import { isUpstreamSite, SOURCE_URL } from "@/lib/site";
 
 export async function NavBar() {
   // headers() must come first: its dynamic-rendering bailout is what keeps
@@ -32,15 +34,19 @@ export async function NavBar() {
           </span>
         </Link>
         <div className="flex items-center gap-4">
-          <a
-            href="https://github.com/MajesteitBart/bezoekje"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Broncode op GitHub"
-            className="text-[#4A443D] transition-colors hover:text-[#E4593B]"
-          >
-            <GithubIcon className="size-5" />
-          </a>
+          {isUpstreamSite() ? (
+            <a
+              href={SOURCE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Broncode op GitHub"
+              className="text-[#4A443D] transition-colors hover:text-[#E4593B]"
+            >
+              <GithubIcon className="size-5" />
+            </a>
+          ) : (
+            <CloneNotice sourceUrl={SOURCE_URL} />
+          )}
           <Link
             href="/account"
             className="rounded-md border border-[#EFE6DA] bg-white px-3.5 py-1.5 text-sm font-medium text-[#4A443D] transition-colors hover:border-[#E4593B]/50 hover:text-[#E4593B]"
